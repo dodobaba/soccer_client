@@ -1,7 +1,7 @@
 class DrawerItem {
   final String label;
-  final int id;
   final String iconPath;
+  final String navstring;
 
-  DrawerItem(this.label, this.id, this.iconPath);
+  DrawerItem(this.label, this.navstring, this.iconPath);
 }

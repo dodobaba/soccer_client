@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'models/drawerMenu.dart';
-import 'main.dart';
 
 class MyDrawer extends StatelessWidget {
   @override
@@ -13,15 +12,17 @@ class MyDrawer extends StatelessWidget {
         children: [Container(color: Colors.blue, height: 100)]..addAll(menu
             .map((e) => GestureDetector(
                   child: ButtonSection(e.label, e.iconPath),
-                  onTap: () => _onDrawerTap(context, e.id),
+                  onTap: () => _onDrawerTap(context, e.navstring),
                 ))
             .toList()),
       ),
     );
   }
 
-  _onDrawerTap(BuildContext context, int id) {
-    Navigator.pushNamed(context, LeaguePage, arguments: {"id": id});
+  _onDrawerTap(BuildContext context, String page) {
+    // Navigator.pop(context);
+    // Navigator.of(context).popAndPushNamed(page);
+    // Navigator.pushNamed(context, page, arguments: null);
   }
 }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'mydrawer.dart';
+import 'home.dart';
+import 'league.dart';
 
 void main() => runApp(MyApp());
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
             screen = MyHomePage(title: 'TSI: The Soccer Infomation');
             break;
           case LeaguePage:
-            screen = League();
+            screen = League(title:'TSI: The League Page');
             break;
           default:
             screen = MyHomePage(title: 'TSI: The Soccer Infomation');
@@ -40,47 +41,3 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class League extends StatelessWidget{
-  @override
-  Widget build(BuildContext context){
-    return Text('The league page');
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-  final String title;
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        leading: Builder(builder: (BuildContext context) {
-          return IconButton(
-            icon: const Icon(Icons.menu),
-            onPressed: () {
-              Scaffold.of(context).openDrawer();
-            },
-            tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-          );
-        }),
-      ),
-      drawer: MyDrawer(),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'The Soccer Infomation Home Page',
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
