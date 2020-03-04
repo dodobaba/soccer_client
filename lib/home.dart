@@ -1,6 +1,5 @@
-
 import 'package:flutter/material.dart';
-
+import 'main.dart';
 import 'mydrawer.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -34,9 +33,15 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               'The Soccer Infomation Home Page',
             ),
+            FlatButton(
+                onPressed: () => _onGoto(context), child: Text('goto the league page'))
           ],
         ),
       ),
     );
+  }
+
+  _onGoto(BuildContext context) {
+    Navigator.pushNamed(context, LeaguePage);
   }
 }

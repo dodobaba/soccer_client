@@ -21,7 +21,7 @@ class MyDrawer extends StatelessWidget {
 
   _onDrawerTap(BuildContext context, String page) {
     // Navigator.pop(context);
-    // Navigator.of(context).popAndPushNamed(page);
+     Navigator.of(context).popAndPushNamed(page);
     // Navigator.pushNamed(context, page, arguments: null);
   }
 }
