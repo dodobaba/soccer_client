@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
 
     RouteFactory _routers(){
       return (settings){
-        final Map<String, dynamic> arguments = settings.arguments;
+        // final Map<String, dynamic> arguments = settings.arguments;
         Widget screen;
         switch (settings.name) {
           case Home:
