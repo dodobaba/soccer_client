@@ -1,7 +1,7 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import 'package:dio/dio.dart';
+import 'models/league_detail.dart';
 
 class LeagueModel {
   final String data;
@@ -53,7 +53,7 @@ class LeagueState extends State<League> {
                 onPressed: () => _onGoBack(context),
                 child: Text('go back to the home page')),
             Text('The league page'),
-          ]..addAll(rs.map((item) => Text('${item['nameChs']}')).toList()),
+          ]..addAll(rs.map((item) => LeagueDetail(item)).toList()),
         ));
   }
 
