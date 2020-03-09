@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:localstorage/localstorage.dart';
 import 'main.dart';
 import 'mydrawer.dart';
 
@@ -11,7 +12,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String _value;
-
+  final storage = new LocalStorage("localisation");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,18 +37,19 @@ class _MyHomePageState extends State<MyHomePage> {
               'The Soccer Infomation Home Page',
             ),
             DropdownButton(
-              value: _value, 
-            hint: Text('语言'), 
-            onChanged: (v){
-              setState(() {
-                _value=v;
-              });
-            },
-            items: [
-              DropdownMenuItem(value: 'CHS', child: Text('CHS')),
-              DropdownMenuItem(value: 'CHT', child: Text('CHT')),
-              DropdownMenuItem(value: 'EN', child: Text('EN')),
-            ]),
+                value: _value,
+                hint: Text('语言'),
+                onChanged: (v) {
+                  storage.setItem("localisation", v);
+                  setState(() {
+                    _value = v;
+                  });
+                },
+                items: [
+                  DropdownMenuItem(value: 'CHS', child: Text('CHS')),
+                  DropdownMenuItem(value: 'CHT', child: Text('CHT')),
+                  DropdownMenuItem(value: 'EN', child: Text('EN')),
+                ]),
             FlatButton(
                 onPressed: () => _onGoto(context),
                 child: Text('goto the league page'))
