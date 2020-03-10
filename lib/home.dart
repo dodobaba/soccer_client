@@ -12,7 +12,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String _value;
-  final storage = new LocalStorage("localisation");
+  final storage = new LocalStorage("localization");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 value: _value,
                 hint: Text('语言'),
                 onChanged: (v) {
-                  storage.setItem("localisation", v);
+                  storage.setItem("localization", v);
                   setState(() {
                     _value = v;
                   });

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:localstorage/localstorage.dart';
 import 'package:dio/dio.dart';
 import 'models/league_detail.dart';
 
@@ -19,7 +19,10 @@ class League extends StatefulWidget {
 }
 
 class LeagueState extends State<League> {
+  final storage = LocalStorage("localization");
   List<dynamic> rs = [];
+  String localization;
+  
 
   void fetchData() async {
     try {
@@ -38,21 +41,24 @@ class LeagueState extends State<League> {
   @override
   void initState() {
     super.initState();
+    setState((){
+      this.localization = storage.getItem("localization");
+    });
     fetchData();
   }
 
   @override
   Widget build(BuildContext context) {
+    print(this.localization);
     return Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
         ),
-        body: Column(
+        body: ListView(
           children: <Widget>[
             FlatButton(
                 onPressed: () => _onGoBack(context),
                 child: Text('go back to the home page')),
-            Text('The league page'),
           ]..addAll(rs.map((item) => LeagueDetail(item)).toList()),
         ));
   }

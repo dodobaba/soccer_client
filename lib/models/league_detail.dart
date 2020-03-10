@@ -38,55 +38,52 @@ class LeagueDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(10.0),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(25.0)),
-        border: Border.all(width: 2, color: transColor(this.data['color'])),
-      ),
+    return Card(
       child: Column(
         children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Container(
-                width: 50.0,
-                height: 50.0,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(image: NetworkImage(this.data['countryLogo']),fit: BoxFit.fitHeight)
-                ),
+          ListTile(
+              leading: CircleAvatar(
+                backgroundImage: NetworkImage(this.data['countryLogo']),
               ),
-              Container(
-                width: 50.0,
-                height: 50.0,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(image: NetworkImage(this.data['leagueLogo']),fit: BoxFit.fitHeight)
+              title: Row(mainAxisSize: MainAxisSize.min, children: [
+                Text(this.data['nameChs']),
+                Text("(${this.data['nameChsShort']})"),
+                Text(
+                    " -- (${this.data['nameCht']} -- ${this.data['nameChtShort']})")
+              ]),
+              subtitle: Row(mainAxisSize: MainAxisSize.min, children: [
+                Text(this.data['nameEn']),
+                Text("(${this.data['nameEnShort']})")
+              ])),
+          Container(
+            alignment: Alignment.topLeft,
+            padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                CircleAvatar(
+                  backgroundImage: NetworkImage(this.data['leagueLogo']),
                 ),
-              ),
-              Column(
-                children: <Widget>[
-                  Text(this.data['nameEn']),
-                  Text(this.data['nameEnShort']),
-                  Text(this.data['nameChs']),
-                  Text(this.data['nameChsShort']),
-                  Text(this.data['nameCht']),
-                  Text(this.data['nameChtShort']),
-                ],
-              )
-            ],
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text("本赛季：${this.data['currSeason']}"),
+                    Text(
+                        "当前第${this.data['currRound']}轮 / 总轮数：${this.data['sumRound']}"),
+                  ],
+                )
+              ],
+            ),
           ),
           // Text(checkNULL(this.data['leagueId'].toString())),
           // Text(this.data['type']),
           // Text(checkNULL(this.data['subSclassEn'])),
           // Text(checkNULL(this.data['subSclassCn'])),
-          Text(this.data['sumRound']),
-          Text(this.data['currRound']),
-          Text(this.data['currSeason']),
-          Text(this.data['countryId']),
-          Text(this.data['countryEn']),
-          Text(this.data['countryCn']),
+
+          // Text(this.data['currRound']),
+          // Text(this.data['countryId']),
+          // Text(this.data['countryEn']),
+          // Text(this.data['countryCn']),
           // Text(this.data['leagueLogo']),
           // Text(this.data['countryLogo']),
           // Text(this.data['areaId'])
