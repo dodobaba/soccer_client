@@ -49,7 +49,7 @@ class LeagueState extends State<League> {
 
   @override
   Widget build(BuildContext context) {
-    print(this.localization);
+    // print(this.localization);
     return Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
