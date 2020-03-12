@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'home.dart';
 import 'league.dart';
+import 'teams.dart';
 
 void main() => runApp(MyApp());
 
 const Home = "/";
 const LeaguePage = '/leaguepage';
+const TeamsPage = '/teams';
 
 class MyApp extends StatelessWidget {
   @override
@@ -22,6 +24,9 @@ class MyApp extends StatelessWidget {
             break;
           case LeaguePage:
             screen = League(title:'TSI: The League Page');
+            break;
+          case TeamsPage:
+            screen = Teams(title:'TSI: The Team Page');
             break;
           default:
             screen = MyHomePage(title: 'TSI: The Soccer Infomation');

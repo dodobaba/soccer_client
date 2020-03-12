@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:dio/dio.dart';
 
+import 'models/teams_detail.dart';
+
 class Teams extends StatefulWidget {
   final String title;
   Teams({Key key, this.title}) : super(key: key);
@@ -11,7 +13,7 @@ class Teams extends StatefulWidget {
 
 class TeamsState extends State<Teams> {
   final storage = LocalStorage("localization");
-  List<dynamic> rs = [];
+  static List<dynamic> rs = [];
   String localization;
 
   void fetchData() async {
@@ -28,6 +30,21 @@ class TeamsState extends State<Teams> {
     }
   }
 
+  static PageController _defaultPageController = new PageController();
+
+  var myPageView = PageView.builder(
+      itemCount: rs.length,
+      scrollDirection: Axis.horizontal,
+      reverse: true,
+      controller: _defaultPageController,
+      physics: PageScrollPhysics(parent: BouncingScrollPhysics()),
+      onPageChanged: (index) {
+        print(index);
+      },
+      itemBuilder: ((context, idx) {
+        return TeamsDetail(rs[idx]);
+      }));
+
   @override
   void initState() {
     super.initState();
@@ -39,6 +56,17 @@ class TeamsState extends State<Teams> {
 
   @override
   Widget build(BuildContext context) {
-    return null;
+    return PageView.builder(
+        itemCount: rs.length,
+        scrollDirection: Axis.horizontal,
+        reverse: true,
+        controller: _defaultPageController,
+        physics: PageScrollPhysics(parent: BouncingScrollPhysics()),
+        onPageChanged: (index) {
+          print(index);
+        },
+        itemBuilder: ((context, idx) {
+          return TeamsDetail(rs[idx]);
+        }));
   }
 }

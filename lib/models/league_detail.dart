@@ -1,3 +1,4 @@
+// import 'package:client/main.dart';
 import 'package:flutter/material.dart';
 
 String checkNULL(String dep) {
@@ -38,10 +39,16 @@ class LeagueDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
+    // _onGoto(BuildContext context) {
+    //   Navigator.pushNamed(context, TeamsPage);
+    // }
+
     return Card(
       child: Column(
         children: <Widget>[
           ListTile(
+              // onTap: _onGoto(context),
               leading: CircleAvatar(
                 backgroundImage: NetworkImage(this.data['countryLogo']),
               ),
