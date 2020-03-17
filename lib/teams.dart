@@ -30,7 +30,7 @@ class TeamsState extends State<Teams> {
     }
   }
 
-  static PageController _defaultPageController = new PageController();
+  static PageController _defaultPageController = new PageController(initialPage: 5 , viewportFraction: 0.8);
 
   var myPageView = PageView.builder(
       itemCount: rs.length,

@@ -6,14 +6,11 @@ class TeamsDetail extends StatelessWidget {
   TeamsDetail(this.data);
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     print(this.data);
     return Card(
-      child: Column(
-        children:[
-          Text(this.data['nameChs'])
-        ]
-      ),
+      margin: EdgeInsets.fromLTRB(20, 50, 20, 5),
+      child: Column(children: [Text(this.data['nameChs'])]),
     );
   }
 }
