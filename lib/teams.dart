@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:dio/dio.dart';
@@ -15,6 +17,9 @@ class TeamsState extends State<Teams> {
   final storage = LocalStorage("localization");
   static List<dynamic> rs = [];
   String localization;
+  double viewportfraction = 0.8;
+  double pageOffset;
+  PageController _defaultPageController;
 
   void fetchData() async {
     try {
@@ -30,24 +35,16 @@ class TeamsState extends State<Teams> {
     }
   }
 
-  static PageController _defaultPageController = new PageController(initialPage: 5 , viewportFraction: 0.8);
-
-  var myPageView = PageView.builder(
-      itemCount: rs.length,
-      scrollDirection: Axis.horizontal,
-      reverse: true,
-      controller: _defaultPageController,
-      physics: PageScrollPhysics(parent: BouncingScrollPhysics()),
-      onPageChanged: (index) {
-        print(index);
-      },
-      itemBuilder: ((context, idx) {
-        return TeamsDetail(rs[idx]);
-      }));
-
   @override
   void initState() {
     super.initState();
+    _defaultPageController =
+        new PageController(initialPage: 5, viewportFraction: viewportfraction)
+          ..addListener(() {
+            setState(() {
+              pageOffset = _defaultPageController.page;
+            });
+          });
     setState(() {
       this.localization = storage.getItem("localization");
     });
@@ -66,7 +63,9 @@ class TeamsState extends State<Teams> {
           print(index);
         },
         itemBuilder: ((context, idx) {
-          return TeamsDetail(rs[idx]);
+          double scale = max(viewportfraction,
+              (1 - (pageOffset - idx).abs() + viewportfraction));
+          return TeamsDetail(rs[idx], scale);
         }));
   }
 }
