@@ -3,19 +3,20 @@ import 'package:flutter/material.dart';
 import 'home.dart';
 import 'league.dart';
 import 'teams.dart';
+import 'gameSchedule.dart';
 
 void main() => runApp(MyApp());
 
 const Home = "/";
 const LeaguePage = '/leaguepage';
 const TeamsPage = '/teams';
+const GameSchedulePage = '/gameschedule';
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
-    RouteFactory _routers(){
-      return (settings){
+    RouteFactory _routers() {
+      return (settings) {
         // final Map<String, dynamic> arguments = settings.arguments;
         Widget screen;
         switch (settings.name) {
@@ -23,10 +24,13 @@ class MyApp extends StatelessWidget {
             screen = MyHomePage(title: 'TSI: The Soccer Infomation');
             break;
           case LeaguePage:
-            screen = League(title:'TSI: The League Page');
+            screen = League(title: 'TSI: The League Page');
             break;
           case TeamsPage:
-            screen = Teams(title:'TSI: The Team Page');
+            screen = Teams(title: 'TSI: The Team Page');
+            break;
+          case GameSchedulePage:
+            screen = GameSchedule(title: 'TSI: The Schedule Page');
             break;
           default:
             screen = MyHomePage(title: 'TSI: The Soccer Infomation');
@@ -45,4 +49,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

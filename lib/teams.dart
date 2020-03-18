@@ -53,19 +53,23 @@ class TeamsState extends State<Teams> {
 
   @override
   Widget build(BuildContext context) {
-    return PageView.builder(
-        itemCount: rs.length,
-        scrollDirection: Axis.horizontal,
-        reverse: true,
-        controller: _defaultPageController,
-        physics: PageScrollPhysics(parent: BouncingScrollPhysics()),
-        onPageChanged: (index) {
-          print(index);
-        },
-        itemBuilder: ((context, idx) {
-          double scale = max(viewportfraction,
-              (1 - (pageOffset - idx).abs() + viewportfraction));
-          return TeamsDetail(rs[idx], scale);
-        }));
+    return Scaffold(
+        appBar: AppBar(
+          title: Text(widget.title),
+        ),
+        body: PageView.builder(
+            itemCount: rs.length,
+            scrollDirection: Axis.horizontal,
+            reverse: true,
+            controller: _defaultPageController,
+            physics: PageScrollPhysics(parent: BouncingScrollPhysics()),
+            onPageChanged: (index) {
+              print(index);
+            },
+            itemBuilder: ((context, idx) {
+              double scale = max(viewportfraction,
+                  (1 - (pageOffset - idx).abs() + viewportfraction));
+              return TeamsDetail(rs[idx], scale);
+            })));
   }
 }

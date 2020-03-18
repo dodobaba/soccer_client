@@ -53,9 +53,12 @@ class _MyHomePageState extends State<MyHomePage> {
             FlatButton(
                 onPressed: () => _onGoto(context),
                 child: Text('goto the league page')),
-                FlatButton(
+            FlatButton(
                 onPressed: () => _onGoto2(context),
                 child: Text('goto the teams page')),
+            FlatButton(
+                onPressed: () => _onGoto3(context),
+                child: Text('goto the game schedule page')),
           ],
         ),
       ),
@@ -68,5 +71,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   _onGoto2(BuildContext context) {
     Navigator.pushNamed(context, TeamsPage);
+  }
+
+  _onGoto3(BuildContext context) {
+    Navigator.pushNamed(context, GameSchedulePage);
   }
 }
