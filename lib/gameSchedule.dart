@@ -17,7 +17,7 @@ class GameScheduleState extends State<GameSchedule> {
   final storage = LocalStorage("localization");
   static List<dynamic> rs = [];
   String localization;
-  double viewportfraction = 0.3;
+  double viewportfraction = 0.27;
   double pageOffset;
   PageController _defaultPageController;
 
