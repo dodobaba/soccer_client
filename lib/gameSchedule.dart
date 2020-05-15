@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:dio/dio.dart';
 
-import 'models/gameSchedule_detail.dart';
+// import 'models/gameSchedule_detail.dart';
+import 'models/schedule.dart';
 
 class GameSchedule extends StatefulWidget {
   final String title;
@@ -24,10 +25,12 @@ class GameScheduleState extends State<GameSchedule> {
   void fetchData() async {
     try {
       Response res = await Dio().get("http://localhost:18208/api/getschedule");
-      var ttt = new List<dynamic>.from(res.data['Schedule']);
-      print(ttt.length);
+      List<Schedule> schedules = List.from(res.data['Schedule'])
+          .map((e) => Schedule.parse(e))
+          .toList();
+      print(schedules.length);
       setState(() {
-        rs = ttt;
+        rs = schedules;
       });
     } catch (e) {
       print(e);
@@ -41,13 +44,13 @@ class GameScheduleState extends State<GameSchedule> {
       this.localization = storage.getItem("localization");
     });
     fetchData();
-    _defaultPageController = new PageController(
-        initialPage: 2, viewportFraction: viewportfraction)
-      ..addListener(() {
-        setState(() {
-          pageOffset = _defaultPageController.page;
-        });
-      });
+    _defaultPageController =
+        new PageController(initialPage: 2, viewportFraction: viewportfraction)
+          ..addListener(() {
+            setState(() {
+              pageOffset = _defaultPageController.page;
+            });
+          });
   }
 
   @override
@@ -56,19 +59,19 @@ class GameScheduleState extends State<GameSchedule> {
         appBar: AppBar(
           title: Text(widget.title),
         ),
-        body:PageView.builder(
-        itemCount: rs.length,
-        scrollDirection: Axis.vertical,
-        reverse: false,
-        controller: _defaultPageController,
-        physics: PageScrollPhysics(parent: BouncingScrollPhysics()),
-        onPageChanged: (index) {
-          print(index);
-        },
-        itemBuilder: ((context, idx) {
-          double scale = max(viewportfraction,
-              (1 - (pageOffset - idx).abs() + viewportfraction));
-          return GameScheduleDetail(rs[idx], scale);
-        })));
+        body: PageView.builder(
+            itemCount: rs.length,
+            scrollDirection: Axis.vertical,
+            reverse: false,
+            controller: _defaultPageController,
+            physics: PageScrollPhysics(parent: BouncingScrollPhysics()),
+            onPageChanged: (index) {
+              print(index);
+            },
+            itemBuilder: ((context, idx) {
+              double scale = max(viewportfraction,
+                  (1 - (pageOffset - idx).abs() + viewportfraction));
+              return GameScheduleDetail(rs[idx], scale);
+            })));
   }
 }
