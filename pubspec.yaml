@@ -25,6 +25,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   dio: ^3.0.9
   localstorage: ^3.0.0
+  mini_calendar: ^0.3.2
 
 dev_dependencies:
   flutter_test:
