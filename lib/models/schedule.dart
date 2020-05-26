@@ -65,31 +65,34 @@ class Schedule {
 class Stats {
   final List<int> flag;
   final List<int> data;
-  Stats(
-      {this.flag = const [0, 0, 0, 0, 0, 0, 0, 0],
-      this.data = const [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ]});
+  Stats({
+    this.flag = const [0, 0, 0, 0, 0, 0, 0, 0],
+    this.data = const [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  });
   factory Stats.parse(Map<String, dynamic> d) {
     var _flag = List.from(d['Flag']).map((e) => e as int).toList();
     var _data = List.from(d['Data']).map((e) => e as int).toList();
     return Stats(flag: _flag, data: _data);
   }
+}
+
+class Competition {
+  final int key;
+  final String name;
+  final String shortName;
+  final String color;
+  Competition(this.key, this.name, this.shortName, this.color);
+
+  factory Competition.parse(Map<String, dynamic> d) =>
+      Competition(d['key'], d['Name'], d['ShortName'], d['color']);
+}
+
+class Team {
+  final int key;
+  final String name;
+  final String shortName;
+  Team(this.key, this.name, this.shortName);
+
+  factory Team.parse(Map<String, dynamic> d) =>
+      Team(d['key'], d['Name'], d['ShortName']);
 }
